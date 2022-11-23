@@ -31,14 +31,14 @@ jobs:
         name: allure-results
         path: allure-results/
         retention-days: 20
-    - name Get Allure History
-      - uses: actions/checkout@v3
+    - name: Get Allure History
+      uses: actions/checkout@v3
       if: always()
       continue-on-error: true
       with:
         ref: gh-pages
         path: gh-pages
-        - name: Test marketplace action
+    - name: Test marketplace action
       uses: simple-elf/allure-report-action@master
       if: always()
       id: allure-report

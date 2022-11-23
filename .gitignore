@@ -1,4 +1,6 @@
 node_modules/
 /test-results/
+/allure-report/
+/allure-results/
 /playwright-report/
 /playwright/.cache/

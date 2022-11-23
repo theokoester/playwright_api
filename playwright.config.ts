@@ -46,7 +46,7 @@ const config: PlaywrightTestConfig = {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
     screenshot: 'on',
-    testIdAttribute: 'data-test'
+    testIdAttribute: 'data-testid'
   },
 
   /* Configure projects for major browsers */

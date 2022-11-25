@@ -1,5 +1,6 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
+require('dotenv').config();
 
 /**
  * Read environment variables from file.
@@ -43,7 +44,7 @@ const config: PlaywrightTestConfig = {
     /* Base URL to use in actions like `await page.goto('/')`. */
     //baseURL: 'https://dummyapi.io',
     extraHTTPHeaders: {
-      'app-id': '637e302b5aca7b62bdb91482'
+      'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",

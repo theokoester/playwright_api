@@ -41,12 +41,14 @@ const config: PlaywrightTestConfig = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
-
+    //baseURL: 'https://dummyapi.io',
+    extraHTTPHeaders: {
+      'app-id': '637e302b5aca7b62bdb91482'
+    },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
     screenshot: 'on',
-    testIdAttribute: 'data-testid'
+    //testIdAttribute: 'data-testid'
   },
 
   /* Configure projects for major browsers */

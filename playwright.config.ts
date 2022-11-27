@@ -44,7 +44,7 @@ const config: PlaywrightTestConfig = {
     /* Base URL to use in actions like `await page.goto('/')`. */
     //baseURL: 'https://dummyapi.io',
     extraHTTPHeaders: {
-      'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+      'app-id': `${process.env.DUMMYAPI_APP_ID?.toString()}`
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
@@ -58,6 +58,9 @@ const config: PlaywrightTestConfig = {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
+        extraHTTPHeaders: {
+          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+        },
       },
     },
 
@@ -65,6 +68,9 @@ const config: PlaywrightTestConfig = {
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
+        extraHTTPHeaders: {
+          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+        },
       },
     },
 
@@ -72,6 +78,39 @@ const config: PlaywrightTestConfig = {
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
+        extraHTTPHeaders: {
+          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+        },
+      },
+    },
+    
+    {
+      name: "chromium-gh-actions",
+      use: {
+        ...devices["Desktop Chrome"],
+        extraHTTPHeaders: {
+          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+        },
+      },
+    },
+
+    {
+      name: "firefox-gh-actions",
+      use: {
+        ...devices["Desktop Firefox"],
+        extraHTTPHeaders: {
+          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+        },
+      },
+    },
+
+    {
+      name: "webkit-gh-actions",
+      use: {
+        ...devices["Desktop Safari"],
+        extraHTTPHeaders: {
+          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
+        },
       },
     },
 

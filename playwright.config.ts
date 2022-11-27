@@ -84,36 +84,6 @@ const config: PlaywrightTestConfig = {
       },
     },
     
-    {
-      name: "chromium-gh-actions",
-      use: {
-        ...devices["Desktop Chrome"],
-        extraHTTPHeaders: {
-          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
-        },
-      },
-    },
-
-    {
-      name: "firefox-gh-actions",
-      use: {
-        ...devices["Desktop Firefox"],
-        extraHTTPHeaders: {
-          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
-        },
-      },
-    },
-
-    {
-      name: "webkit-gh-actions",
-      use: {
-        ...devices["Desktop Safari"],
-        extraHTTPHeaders: {
-          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
-        },
-      },
-    },
-
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

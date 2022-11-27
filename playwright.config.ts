@@ -32,7 +32,7 @@ const config: PlaywrightTestConfig = {
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    //["html"],
+    ["html"],
     //["list"],
     ["allure-playwright"],
     //['line']
@@ -58,9 +58,6 @@ const config: PlaywrightTestConfig = {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        extraHTTPHeaders: {
-          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
-        },
       },
     },
 
@@ -68,9 +65,6 @@ const config: PlaywrightTestConfig = {
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
-        extraHTTPHeaders: {
-          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
-        },
       },
     },
 
@@ -78,9 +72,6 @@ const config: PlaywrightTestConfig = {
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
-        extraHTTPHeaders: {
-          'app-id': `${process.env.DUMMAPI_APP_ID?.toString()}`
-        },
       },
     },
     

@@ -19,7 +19,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --project=chromium
+      run: npx playwright test
       env:
         DUMMYAPI_APP_ID: ${{ secrets.DUMMAPI_APP_ID }}
     - uses: actions/upload-artifact@v3

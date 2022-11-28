@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe.skip("tests dummyapi.io", () => {
+test.describe("tests dummyapi.io", () => {
   const baseURL: string = "https://dummyapi.io";
 
   test("should list the first 10 users from 99 in total", async ({

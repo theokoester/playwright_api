@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("tests dummyapi.io", () => {
   const baseURL: string = "https://dummyapi.io";
 
-  test("should list the first 10 users from 99 in total", async ({
+/*   test("should list the first 10 users from 99 in total", async ({
     request,
   }) => {
     const users = await request.get(baseURL + "/data/v1//user", {
@@ -36,7 +36,7 @@ test.describe("tests dummyapi.io", () => {
 
     const respBody = await createUser.json();
     expect(respBody.error).toBe("PATH_NOT_FOUND");
-  });
+  }); */
 
   test("it should return an error because of unvalid body", async ({
     request,

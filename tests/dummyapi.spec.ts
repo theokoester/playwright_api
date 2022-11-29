@@ -51,6 +51,6 @@ test.describe("tests dummyapi.io", () => {
     expect(createUser.ok()).toBeFalsy();
 
     const respBody = await createUser.json();
-    expect(respBody.error).toBe("BODY_NOT_VALID");
+    expect(respBody.error).toBe("PARAMS_NOT_VALID");
   });
 });

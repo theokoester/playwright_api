@@ -38,7 +38,7 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.error).toBe("PATH_NOT_FOUND");
   });
 
-/*   test("it should return an error because of unvalid body", async ({
+  test("it should return an error because of unvalid body", async ({
     request,
   }) => {
     const createUser = await request.post(baseURL + "/data/v1//user/create", {
@@ -52,5 +52,5 @@ test.describe("tests dummyapi.io", () => {
 
     const respBody = await createUser.json();
     expect(respBody.error).toBe("BODY_NOT_VALID");
-  }); */
+  });
 });

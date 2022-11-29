@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+const baseURL: string = "https://dummyapi.io";
 test.describe("tests dummyapi.io", () => {
-  const baseURL: string = "https://dummyapi.io";
 
   test("should list the first 10 users from 99 in total", async ({
     request,
@@ -49,4 +49,50 @@ test.describe("tests dummyapi.io", () => {
     const respBody = await createUser.json();
     expect(respBody.error).toBe("BODY_NOT_VALID");
   });
+
+  test("it should return an error because of wrong path", async ({request}) => {
+    const createUser = await request.post(baseURL + "/data/v1//user/create", {
+      data: {
+        firstName: 10,
+        email: "email@example.com",
+      },
+    });
+
+    expect(createUser.ok()).toBeFalsy();
+
+    const respBody = await createUser.json();
+    expect(respBody.error).toBe("PARAMS_NOT_VALID");
+  });
+
+});
+
+test.describe('tests dummyapi.io with a wrong app-id token', () => {
+  test.use({extraHTTPHeaders: {
+    'app-id': 'foobar'
+  }});
+  test('wrong api credentials',async ({request}) => {
+    const createUser = await request.post(baseURL + "/data/v1//usser/create", {
+      data: { firstName: "Max", email: "mail@example.com" },
+    });
+    expect(createUser.ok()).toBeFalsy();
+
+    const respBody = await createUser.json();
+    expect(respBody.error).toBe("APP_ID_NOT_EXIST");
+  })
+});
+
+
+test.describe('tests dummyapi.io with a missing app-id token', () => {
+  test.use({extraHTTPHeaders: {
+    
+  }});
+  test('wrong api credentials',async ({request}) => {
+    const createUser = await request.post(baseURL + "/data/v1//usser/create", {
+      data: { firstName: "Max", email: "mail@example.com" },
+    });
+    expect(createUser.ok()).toBeFalsy();
+
+    const respBody = await createUser.json();
+    expect(respBody.error).toBe("APP_ID_MISSING");
+  })
 });

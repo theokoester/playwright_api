@@ -26,9 +26,7 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.data.length).toBe(0);
   });
 
-  test("it should return an error because of unvalid path", async ({
-    request,
-  }) => {
+  test("it should return an error because of unvalid path", async ({request}) => {
     const createUser = await request.post(baseURL + "/data/v1//usser/create", {
       data: { firstName: "Max", email: "mail@example.com" },
     });
@@ -38,10 +36,8 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.error).toBe("PATH_NOT_FOUND");
   });
 
-  test("it should return an error because of unvalid body", async ({
-    request,
-  }) => {
-    const createUser = await request.post(baseURL + "/data/v1//user/create", {
+  test("it should return an error because of unvalid body", async ({request}) => {
+    const createUser = await request.post(baseURL + "/data/v1/user/create", {
       data: {
         firstName: 10,
         email: "email@example.com",
@@ -51,6 +47,6 @@ test.describe("tests dummyapi.io", () => {
     expect(createUser.ok()).toBeFalsy();
 
     const respBody = await createUser.json();
-    expect(respBody.error).toBe("PARAMS_NOT_VALID");
+    expect(respBody.error).toBe("BODY_NOT_VALID");
   });
 });

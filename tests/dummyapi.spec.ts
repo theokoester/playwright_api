@@ -26,7 +26,7 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.data.length).toBe(0);
   });
 
-/*   test("it should return an error because of unvalid path", async ({
+  test("it should return an error because of unvalid path", async ({
     request,
   }) => {
     const createUser = await request.post(baseURL + "/data/v1//usser/create", {
@@ -38,7 +38,7 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.error).toBe("PATH_NOT_FOUND");
   });
 
-  test("it should return an error because of unvalid body", async ({
+/*   test("it should return an error because of unvalid body", async ({
     request,
   }) => {
     const createUser = await request.post(baseURL + "/data/v1//user/create", {

@@ -15,7 +15,7 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.total).toBe(100);
     expect(respBody.data.length).toBe(10);
   });
-/* 
+
   test("it should return an empty result array", async ({ request }) => {
     const users = await request.get(baseURL + "/data/v1//user", {
       params: { limit: 40, page: 3 },
@@ -26,7 +26,7 @@ test.describe("tests dummyapi.io", () => {
     expect(respBody.data.length).toBe(0);
   });
 
-  test("it should return an error because of unvalid path", async ({
+/*   test("it should return an error because of unvalid path", async ({
     request,
   }) => {
     const createUser = await request.post(baseURL + "/data/v1//usser/create", {

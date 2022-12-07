@@ -1,8 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { User } from "../models/user.model";
 // import {faker} from '@faker-js/faker'; this imports all locales
-import { faker } from '@faker-js/faker/locale/de';
-
+import { faker } from "@faker-js/faker/locale/de";
 
 const baseURL: string = "https://dummyapi.io";
 
@@ -13,19 +12,6 @@ test.describe("tests users", () => {
     lastName: "",
     email: "",
   };
-
-  let amountUsersCreated: number = 10;
-
-  test("should list the first 10 users", async ({ request }) => {
-    const users = await request.get(baseURL + "/data/v1/user?created=1", { //this url gets our users only
-      params: { limit: 10 },
-    });
-    expect(users.ok()).toBeTruthy();
-
-    const respBody = await users.json();
-    expect(respBody.total).toBe(8);
-    expect(respBody.data.length).toBe(amountUsersCreated);
-  });
 
   test("it should return an empty result array", async ({ request }) => {
     const users = await request.get(baseURL + "/data/v1//user", {
@@ -48,14 +34,25 @@ test.describe("tests users", () => {
 
     expect(user.ok()).toBeTruthy();
 
-    amountUsersCreated ++;
     const respBody = await user.json();
     userContainerVar.id = await respBody.id;
     userContainerVar.firstName = await respBody.firstName;
     userContainerVar.lastName = await respBody.lastName;
   });
 
-  test.skip("update the names of an existing user by its id", async ({
+  test("should list the newly created user", async ({ request }) => {
+    const users = await request.get(baseURL + "/data/v1/user?created=1", {
+      //this url gets our users only
+      params: { limit: 10 },
+    });
+    expect(users.ok()).toBeTruthy();
+
+    const respBody = await users.json();
+    expect(respBody.total).toBe(1);
+    expect(respBody.data.length).toBe(1);
+  });
+
+  test("update the names of an existing user by its id", async ({
     request,
   }) => {
     const userUpdate = await request.put(
@@ -68,9 +65,19 @@ test.describe("tests users", () => {
     expect(userUpdate.ok()).toBeTruthy();
 
     const userUpdateRespBody = await userUpdate.json();
-    expect(userUpdateRespBody.firstName).toBe('Maximilian');
-    expect(userUpdateRespBody.lastName).toBe('Müller');
+    expect(userUpdateRespBody.firstName).toBe("Maximilian");
+    expect(userUpdateRespBody.lastName).toBe("Müller");
+  });
 
+  test("delete the newly created and updated user", async ({ request }) => {
+    const deleteUser = await request.delete( baseURL +
+      "/data/v1/user/" + userContainerVar.id
+    );
+
+    expect(deleteUser.ok()).toBeTruthy();
+
+    const respBody = await deleteUser.json();
+    expect(respBody.id).toBe(userContainerVar.id);
   });
 });
 

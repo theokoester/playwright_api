@@ -1,6 +1,6 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
-require('dotenv').config();
+require("dotenv").config();
 
 /**
  * Read environment variables from file.
@@ -31,12 +31,9 @@ const config: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ["html"],
-    ["list"],
-    ["allure-playwright"],
-    //['line']
-  ],
+  reporter: process.env.CI
+    ? [["github"], ["allure-playwright"]]
+    : [["html"], ["list"], ["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -44,11 +41,11 @@ const config: PlaywrightTestConfig = {
     /* Base URL to use in actions like `await page.goto('/')`. */
     //baseURL: 'https://dummyapi.io',
     extraHTTPHeaders: {
-      'app-id': `${process.env.DUMMYAPI_APP_ID?.toString()}`
+      "app-id": `${process.env.DUMMYAPI_APP_ID?.toString()}`,
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
-    screenshot: 'on',
+    screenshot: "on",
     //testIdAttribute: 'data-testid'
   },
 
@@ -74,7 +71,7 @@ const config: PlaywrightTestConfig = {
         ...devices["Desktop Safari"],
       },
     },
-    
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
